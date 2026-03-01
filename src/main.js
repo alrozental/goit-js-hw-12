@@ -24,7 +24,11 @@ form.addEventListener('submit', async event => {
   query = input.value.trim();
 
   if (query === '') {
-    return iziToast.error({ message: 'Sorry...' });
+    return iziToast.error({
+      title: 'Error',
+      message: 'Sorry, you need to enter a request!',
+      position: 'topRight',
+    });
   }
 
   clearGallery(galleryContainer);
@@ -38,6 +42,7 @@ form.addEventListener('submit', async event => {
 
     if (data.hits.length === 0) {
       iziToast.error({
+        title: 'Error',
         message:
           'Sorry, there are no images matching your search query. Please try again!',
         position: 'topRight',
@@ -48,6 +53,11 @@ form.addEventListener('submit', async event => {
 
     if (data.totalHits > 15) {
       showLoadMoreButton();
+    } else if (data.totalHits > 0) {
+      iziToast.info({
+        message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
+      });
     }
   } catch (error) {
     iziToast.error({
@@ -63,7 +73,9 @@ form.addEventListener('submit', async event => {
 
 loadMoreBtn.addEventListener('click', async () => {
   page++;
+
   loadMoreBtn.disabled = true;
+  hideLoadMoreButton();
   showLoader();
 
   try {
@@ -75,6 +87,7 @@ loadMoreBtn.addEventListener('click', async () => {
       const itemHeight = item.getBoundingClientRect().height;
 
       window.scrollBy({
+        left: 0,
         top: itemHeight,
         behavior: 'smooth',
       });
@@ -84,7 +97,10 @@ loadMoreBtn.addEventListener('click', async () => {
       hideLoadMoreButton();
       iziToast.info({
         message: "We're sorry, but you've reached the end of search results.",
+        position: 'topRight',
       });
+    } else {
+      showLoadMoreButton();
     }
   } catch (error) {
     iziToast.error({
