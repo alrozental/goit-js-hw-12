@@ -88,7 +88,7 @@ loadMoreBtn.addEventListener('click', async () => {
 
       window.scrollBy({
         left: 0,
-        top: itemHeight,
+        top: itemHeight * 2,
         behavior: 'smooth',
       });
     }
