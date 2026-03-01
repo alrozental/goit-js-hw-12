@@ -1,28 +1,33 @@
-// Описаний у документації
 import SimpleLightbox from 'simplelightbox';
-// Додатковий імпорт стилів
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const loader = document.querySelector('.loader');
-
-export function showLoader() {
-  const loader = document.querySelector('.loader');
-  if (loader) loader.classList.remove('is-hidden');
-}
-
-export function hideLoader() {
-  const loader = document.querySelector('.loader');
-  if (loader) loader.classList.add('is-hidden');
-}
-
-export function clearGallery(container) {
-  container.innerHTML = '';
-}
+const loadMore = document.querySelector('.load-more-container');
 
 let lightbox = new SimpleLightbox('.gallery-link', {
   captionsData: 'alt',
   captionDelay: 250,
 });
+
+export function showLoader() {
+  loader.classList.remove('is-hidden');
+}
+
+export function hideLoader() {
+  loader.classList.add('is-hidden');
+}
+
+export function showLoadMoreButton() {
+  loadMore.classList.remove('is-hidden');
+}
+
+export function hideLoadMoreButton() {
+  loadMore.classList.add('is-hidden');
+}
+
+export function clearGallery(container) {
+  container.innerHTML = '';
+}
 
 export function createGallery(imeges, container) {
   const markup = imeges

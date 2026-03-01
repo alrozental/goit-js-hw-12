@@ -115,8 +115,7 @@ input:focus {
 
 .btn {
   padding: 8px 16px;
-  width: 91px;
-  height: 40px;
+
   border: none;
   border-radius: 8px;
   background-color: #4e75ff;
@@ -141,7 +140,10 @@ input:focus {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
   transform: scale(0.98);
 }
-
+.load-btn {
+  display: block;
+  margin: 32px auto;
+}
 .loader-text {
   text-align: center;
   font-weight: 400;
